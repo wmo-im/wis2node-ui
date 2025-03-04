@@ -43,7 +43,7 @@
           <span>
             <strong>{{ $t("datasets.topic") + ": " }}</strong>
             <code v-if="dataset.properties['wmo:topicHierarchy']">{{ dataset.properties['wmo:topicHierarchy'] }}</code>
-            <code v-else>No topic defined</code>
+            <code v-else>---</code>
             <br>
             <strong>{{ $t("datasets.metadata_id") + ": " }}</strong>
             <code>{{ dataset.properties.id}}</code>

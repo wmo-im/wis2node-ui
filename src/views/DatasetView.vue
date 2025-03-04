@@ -117,7 +117,11 @@ export default defineComponent({
 
         for (const feature of data.features) {
 
-          const hasSynop = feature.properties["wmo:topicHierarchy"].includes("surface-based-observations/synop");
+          // if "wmo:topicHierarchy" not is available in the properties hasSynop should be false
+          let hasSynop = false;
+          if (feature.properties["wmo:topicHierarchy"]) {
+            hasSynop = feature.properties["wmo:topicHierarchy"].includes("surface-based-observations/synop");
+          }
           const uiLinks = [];
 
           if (hasSynop) {
@@ -145,6 +149,14 @@ export default defineComponent({
                 type: "OAFeat",
                 msg: "oafeat",
                 icon: "mdi-database-search",
+              });
+            } else if (link.rel === "data") {
+              uiLinks.push({
+                href: link.href,
+                target: undefined,
+                type: "data",
+                msg: "data",
+                icon: "mdi-file-document"
               });
             }
           }
